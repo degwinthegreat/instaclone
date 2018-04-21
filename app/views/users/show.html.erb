@@ -1,0 +1,12 @@
+<h1><%= @user.name %>のページ</h1>
+
+<p>メールアドレス:<%= @user.email %></p>
+
+<% @favorite.each do |favorite| %>
+<table>
+<tr>
+  <td><%= favorite.content %></td>
+  <td><%= link_to 'お気に入り解除する', favorite_path(photo_id: @favorite[0].id), method: :delete,class: 'btn btn-danger' %></td>
+</tr>
+</table>
+<% end %>

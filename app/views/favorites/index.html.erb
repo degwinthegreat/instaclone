@@ -1,0 +1,18 @@
+<h1>お気に入り一覧</h1>
+
+<p><%= notice %></p>
+
+<table>
+  <tr>
+    <th>写真</th>
+    <th>本文</th></th>
+  </tr>
+
+  <% @favorites.each do |favorite| %>
+  <tr>
+    <td><%= favorite.content %></td>
+        <%= image_tag favorite.photo %>
+  </tr>
+  <% end %>
+
+<%= link_to '新しくブログを投稿する', new_photo_path %>

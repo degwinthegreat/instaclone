@@ -1,0 +1,26 @@
+<h1>一覧</h1>
+
+<p><%= notice %></p>
+
+<table>
+  <tr>
+    <th>写真</th>
+    <th>本文</th></th>
+  </tr>
+
+  <% @photos.each do |photo| %>
+  <tr>
+    <td><%= photo.content %></td>
+
+    <% if current_user.id == photo.user_id %>
+      <td><%= link_to '　詳細を確認する　', photo_path(photo.id) %></td>
+      <td><%= link_to "　つぶやきを編集する　", edit_photo_path(photo.id), data: { confirm: '本当に編集していいでいいですか？' } %></td>
+      <td><%= link_to '　つぶやきを削除する　', photo_path(photo.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    <% else %>
+      <td><%= link_to '　詳細を確認する　', photo_path(photo.id) %></td>
+    <% end %>
+  <% end %>
+  </tr>
+</table>
+
+<%= link_to '新しくブログを投稿する', new_photo_path %>
