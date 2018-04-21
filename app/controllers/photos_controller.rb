@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
       if @photo.save
         PhotoMailer.photo_mailer(@current_user, @photo).deliver
         format.html { redirect_to @photo, notice: 'Contact was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
+        format.json { render :index, status: :created, location: @photo }
       else
         format.html { render :new }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
