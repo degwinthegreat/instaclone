@@ -4,7 +4,7 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  config.action_mailer.default_url_options = { host: glacial-plains-49725.herokuapp.com }
+  config.action_mailer.default_url_options = { host: 'glacial-plains-49725.herokuapp.com' }
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   # ここに環境変数をuser_name,passwordとして使用することが記されている
