@@ -14,8 +14,8 @@
 
     <% if current_user.id == photo.user_id %>
       <td><%= link_to '　詳細を確認する　', photo_path(photo.id) %></td>
-      <td><%= link_to "　つぶやきを編集する　", edit_photo_path(photo.id), data: { confirm: '本当に編集していいでいいですか？' } %></td>
-      <td><%= link_to '　つぶやきを削除する　', photo_path(photo.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+      <td><%= link_to "　投稿を編集する　", edit_photo_path(photo.id), data: { confirm: '本当に編集していいでいいですか？' } %></td>
+      <td><%= link_to '　投稿を削除する　', photo_path(photo.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
     <% else %>
       <td><%= link_to '　詳細を確認する　', photo_path(photo.id) %></td>
     <% end %>
@@ -23,4 +23,4 @@
   </tr>
 </table>
 
-<%= link_to '新しくブログを投稿する', new_photo_path %>
+<%= link_to '新しく投稿する', new_photo_path %>

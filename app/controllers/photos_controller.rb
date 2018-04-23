@@ -7,18 +7,22 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @photo = Photo.new
+    if params[:back]
+      @photo = Photo.new(photo_params)
+    else
+      @photo = Photo.new
+    end
   end
 
   def create
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
-    @photo.photo.retrieve_from_cache! params[:cache][:image]
+    @photo.photo.retrieve_from_cache! params[:cache][:image] if params[:cache][:photo].present?
     respond_to do |format|
       if @photo.save
         PhotoMailer.photo_mailer(@current_user, @photo).deliver
         format.html { redirect_to @photo, notice: 'Contact was successfully created.' }
-        format.json { render :index, status: :created, location: @photo }
+        format.json { render :show, status: :created, location: @photo }
       else
         format.html { render :new }
         format.json { render json: @photo.errors, status: :unprocessable_entity }

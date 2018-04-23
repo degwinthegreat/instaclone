@@ -8,7 +8,9 @@
   <%= form.hidden_field :user_id %>
 
   <p>本文：<%= @photo.content %></p>
+  <% unless @photo.photo.blank? %>
   <%= image_tag(@photo.photo.url) %>
+  <% end %>
   <%= hidden_field_tag :"cache[image]",@photo.photo.cache_name %>
   <%= form.submit "登録する" %>
 <% end %>
