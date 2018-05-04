@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
-    @photo.photo.retrieve_from_cache! params[:cache][:image] if params[:cache][:photo].present?
+    @photo.photo.retrieve_from_cache! params[:cache][:photo] if params[:cache][:photo].present?
     respond_to do |format|
       if @photo.save
         PhotoMailer.photo_mailer(@current_user, @photo).deliver
@@ -59,7 +59,7 @@ class PhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:photo).permit(:content, :photo, :user_id, :photo_id)
+    params.require(:photo).permit(:content, :photo, :user_id, :photo_id, :photo_cache)
   end
 
   def set_photo

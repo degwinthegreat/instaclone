@@ -1,18 +1,25 @@
 <h1>お気に入り一覧</h1>
 
 <p><%= notice %></p>
-
-<table>
-  <tr>
-    <th>写真</th>
-    <th>本文</th></th>
-  </tr>
-
-  <% @favorites.each do |favorite| %>
-  <tr>
-    <td><%= favorite.content %></td>
-        <%= image_tag favorite.photo %>
-  </tr>
-  <% end %>
-
-<%= link_to '新しくブログを投稿する', new_photo_path %>
+<div class="container">
+<% @favorites.each do |favorite| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <p class="card-text"><%= favorite.content %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <% unless favorite.photo.blank? %>
+            <%= image_tag favorite.photo ,:class => "card-img-bottom img-responsive", :alt =>"Card image cap" %>
+          <% else %>
+            <%= image_tag('noimage.png',:class => "card-img-bottom img-responsive", :alt =>"Card image cap") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

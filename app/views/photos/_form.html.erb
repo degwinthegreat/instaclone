@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_with(model: @photo, local: true ,url: choose_new_or_edit ) do |form| %>
   <% if @photo.errors.any? %>
     <div id="error_explanation">
@@ -10,19 +11,28 @@
       </ul>
     </div>
   <% end %>
-
-
-  <div class="photo_content">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
+    <div class="form-group">
+      <div class="photo_content">
+        <%= form.label :content %>
+        <%= form.text_field :content, :class => "form-control"%>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+      </div>
+    </div>
+  <div class="row">
+    <div class="photo form-group">
+      <%= form.label :photo %>
+      <%= form.file_field :photo, id: :photo_photo %>
+      <%= form.hidden_field :photo_cache %>
+    </div>
   </div>
-  <div class="photo">
-    <%= form.label :photo %>
-    <%= form.file_field :photo, id: :photo_photo %>
-    <%= form.hidden_field :photo_cache %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.submit :class => "btn btn-success" %>
+    </div>
+    </div>
   </div>
-  <%= form.submit %>
 <% end %>
 
 <%= link_to '一覧画面にもどる', photos_path %>
+</div>

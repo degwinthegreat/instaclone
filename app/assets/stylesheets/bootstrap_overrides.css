@@ -1,0 +1,15 @@
+.navbar-toggle {
+  display: block;
+  margin-left: auto;
+}
+
+.container {
+  margin-right: 0px;
+  margin-left: 0px;
+  max-width: 100%;
+}
+
+@media (min-width: 768px)
+.navbar-nav {
+  float: right;
+}

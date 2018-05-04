@@ -6,16 +6,38 @@
   <%= form.hidden_field :photo %>
   <%= form.hidden_field :photo_cache %>
   <%= form.hidden_field :user_id %>
-
-  <p>本文：<%= @photo.content %></p>
-  <% unless @photo.photo.blank? %>
-  <%= image_tag(@photo.photo.url) %>
-  <% end %>
-  <%= hidden_field_tag :"cache[image]",@photo.photo.cache_name %>
-  <%= form.submit "登録する" %>
+<div class="container">
+  <div class="card" >
+    <div class="row">
+      <div class="card-body">
+        <div class="col-md-8">
+          <p class="card-text"><p>本文：<%= @photo.content %></p></p>
+        </div>
+      </div>
+    </div>
+  <!--  <img class="card-img-bottom" src="..." alt="Card image cap"> -->
+  <div class="row">
+    <div class="col-md-8">
+      <% unless @photo.photo.blank? %>
+        <%= image_tag(@photo.photo.url, :class => "card-img-bottom img-responsive", :alt =>"Card image cap") %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+    <div class="text-center">
+        <%= hidden_field_tag :"cache[image]",@photo.photo.cache_name %>
+        <%= form.submit "登録する" %>
+    </div>
 <% end %>
+    </div>
+  </div>
 
 <%= form_with(model: @photo, url: new_photo_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :content %>
+  <div class="text-center">
   <%= form.submit "もどる" , name: 'back' %>
+</div>
 <% end %>
+</div>
+</div>

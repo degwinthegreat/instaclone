@@ -1,26 +1,35 @@
 <h1>一覧</h1>
-
 <p><%= notice %></p>
-
-<table>
-  <tr>
-    <th>写真</th>
-    <th>本文</th></th>
-  </tr>
-
+<div class="container">
   <% @photos.each do |photo| %>
-  <tr>
-    <td><%= photo.content %></td>
-
-    <% if current_user.id == photo.user_id %>
-      <td><%= link_to '　詳細を確認する　', photo_path(photo.id) %></td>
-      <td><%= link_to "　投稿を編集する　", edit_photo_path(photo.id), data: { confirm: '本当に編集していいでいいですか？' } %></td>
-      <td><%= link_to '　投稿を削除する　', photo_path(photo.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-    <% else %>
-      <td><%= link_to '　詳細を確認する　', photo_path(photo.id) %></td>
-    <% end %>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <p class="card-text"><%= photo.content %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <% unless photo.photo.blank? %>
+            <%= image_tag(photo.photo, :class => "card-img-bottom img-responsive", :alt =>"Card image cap") %>
+          <% else %>
+            <%= image_tag('noimage.png',:class => "card-img-bottom img-responsive", :alt =>"Card image cap") %>
+            <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <% if current_user.id == photo.user_id %>
+            <%= link_to '　詳細を確認する　', photo_path(photo.id) %>
+            <%= link_to "　投稿を編集する　", edit_photo_path(photo.id), data: { confirm: '本当に編集していいでいいですか？' } %>
+            <%= link_to '　投稿を削除する　', photo_path(photo.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+          <% else %>
+            <%= link_to '　詳細を確認する　', photo_path(photo.id) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
   <% end %>
-  </tr>
-</table>
-
-<%= link_to '新しく投稿する', new_photo_path %>
+</div>
