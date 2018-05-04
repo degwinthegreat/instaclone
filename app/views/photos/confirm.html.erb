@@ -1,12 +1,12 @@
 <h3>以下の内容で、投稿する。</h3>
 
-
+<div class="container">
 <%= form_with(model: @photo, url: photos_path, local: true) do |form| %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :photo %>
   <%= form.hidden_field :photo_cache %>
   <%= form.hidden_field :user_id %>
-<div class="container">
+
   <div class="card" >
     <div class="row">
       <div class="card-body">
@@ -29,15 +29,18 @@
         <%= hidden_field_tag :"cache[image]",@photo.photo.cache_name %>
         <%= form.submit "登録する" %>
     </div>
-<% end %>
-    </div>
   </div>
-
-<%= form_with(model: @photo, url: new_photo_path, local: true, method: 'get') do |form| %>
-  <%= form.hidden_field :content %>
-  <div class="text-center">
-  <%= form.submit "もどる" , name: 'back' %>
 </div>
 <% end %>
-</div>
+    <dic class="row">
+      <div class="col-md-8">
+      <div class="text-center">
+        <%= form_with(model: @photo, url: new_photo_path, local: true, method: 'get') do |form| %>
+          <%= form.hidden_field :content %>
+          <%= form.submit "もどる" , name: 'back' %>
+        <% end %>
+      </div>
+      </div>
+    </dic>
+  </div>
 </div>
