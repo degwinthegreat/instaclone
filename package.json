@@ -2,7 +2,7 @@
   "name": "instaclone",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.1.0",
+    "bootstrap": "^4.3.1",
     "jquery": "^3.3.1"
   }
 }
